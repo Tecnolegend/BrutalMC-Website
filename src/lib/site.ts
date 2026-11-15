@@ -1,7 +1,7 @@
 // Central settings for the BrutalMC website.
 // Change values here and they update everywhere on the site.
 
-export const SITE_URL = "https://brutalmc.fun";
+export const SITE_URL = "https://www.brutalmc.xyz";
 export const SERVER_IP = "play.brutalmc.xyz";
 export const BEDROCK_PORT = "19132";
 

@@ -2,7 +2,7 @@
 
 The official website for **BrutalMC**, a custom world survival SMP Minecraft server in Bangladesh.
 
-**Live site:** https://brutalmc.fun · **Server IP:** `play.brutalmc.xyz` (Bedrock port `19132`)
+**Live site:** https://www.brutalmc.xyz · **Server IP:** `play.brutalmc.xyz` (Bedrock port `19132`)
 
 ## Pages
 - **Home** – live server status, game portals, rank pricing
