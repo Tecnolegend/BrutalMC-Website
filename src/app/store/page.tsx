@@ -288,21 +288,21 @@ export default function StorePage() {
             </Link>
             <span className="text-zinc-700 hidden sm:inline">•</span>
             <div className="flex items-center gap-2">
-              <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-red-500/40 p-1 bg-gradient-to-br from-red-950 to-black">
-                <Image
-                  src="/images/logo.webp"
-                  alt="BrutalMC"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-extrabold text-lg tracking-wider text-white uppercase">
-                Brutal<span className="text-red-500">MC</span>{" "}
-                <span className="text-xs font-mono font-bold text-red-400 ml-1">
-                  STORE
-                </span>
-              </span>
+              <Image
+                src="/images/logo.webp"
+                alt="BrutalMC dragon logo"
+                width={40}
+                height={40}
+                className="w-9 h-9 object-contain"
+              />
+              <Image
+                src="/images/brutalmc-wordmark.webp"
+                alt="BrutalMC"
+                width={480}
+                height={125}
+                className="h-6 sm:h-7 w-auto"
+              />
+              <span className="text-xs font-mono font-bold text-red-400">STORE</span>
             </div>
           </div>
 

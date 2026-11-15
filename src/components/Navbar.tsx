@@ -101,35 +101,33 @@ export default function Navbar({ onPlayClick }: NavbarProps) {
           <Link
             href="/"
             onClick={() => sound.playClick()}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2.5 group shrink-0"
           >
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-red-500/40 p-1 bg-gradient-to-br from-red-950/60 to-black group-hover:border-red-500 group-hover:shadow-[0_0_15px_rgba(255,0,51,0.5)] transition-all duration-300">
+            <Image
+              src="/images/logo.webp"
+              alt="BrutalMC dragon logo"
+              width={48}
+              height={48}
+              className="w-11 h-11 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_10px_rgba(255,0,51,0.35)] group-hover:scale-105 transition-transform duration-300"
+              priority
+            />
+            <div className="flex flex-col gap-0.5">
               <Image
-                src="/images/logo.webp"
-                alt="BrutalMC dragon logo"
-                width={40}
-                height={40}
-                className="w-full h-full object-contain"
+                src="/images/brutalmc-wordmark.webp"
+                alt="BrutalMC"
+                width={480}
+                height={125}
+                className="h-7 sm:h-8 w-auto max-w-none"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="font-minecraft text-base sm:text-xl tracking-wider text-white uppercase mc-shadow">
-                  Brutal<span className="text-red-500">MC</span>
-                </span>
-                <span className="px-1.5 py-0.5 text-[8px] font-minecraft font-bold bg-red-600/30 border border-red-500/40 text-red-400 rounded">
-                  BD
-                </span>
-              </div>
-              <span className="text-[9px] font-minecraft text-zinc-400 tracking-wider hidden sm:inline">
+              <span className="text-[9px] font-minecraft text-zinc-400 tracking-wider whitespace-nowrap hidden sm:inline xl:hidden pl-0.5">
                 CUSTOM SURVIVAL SMP
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1.5">
+          <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => {
               if (link.isPage) {
                 const Icon = link.icon;
