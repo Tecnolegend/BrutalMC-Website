@@ -41,9 +41,9 @@ export default function Community() {
                   BANGLADESH&apos;S PREMIER SURVIVAL GUILD
                 </div>
 
-                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans leading-tight">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans leading-tight">
                   JOIN THE <span className="text-red-500">COMMUNITY.</span>
-                </h2>
+                </h1>
 
                 <p className="text-zinc-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                   Connect with fellow adventurers, recruit allies for your Survival SMP town,
@@ -74,8 +74,8 @@ export default function Community() {
                   <div className="flex items-center gap-3.5 border-b border-zinc-800/80 pb-4">
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 p-0.5 bg-gradient-to-br from-red-950 to-black shrink-0">
                       <Image
-                        src="/images/logo.png"
-                        alt="BrutalMC Emblem"
+                        src="/images/logo.webp"
+                        alt="BrutalMC dragon logo"
                         width={48}
                         height={48}
                         className="object-contain w-full h-full rounded-lg"

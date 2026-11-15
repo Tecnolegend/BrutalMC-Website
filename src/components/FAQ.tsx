@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { sound } from "@/lib/sound";
 import { HelpCircle, ChevronDown, Sparkles, Shield, CreditCard, Wifi, Swords, Flame } from "lucide-react";
 import { DISCORD_URL } from "@/lib/site";
+import { FAQS } from "@/lib/faqs";
 
 interface FAQItem {
   question: string;
@@ -15,57 +16,16 @@ interface FAQItem {
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs: FAQItem[] = [
-    {
-      category: "CONNECTIVITY",
-      question: "What makes BrutalMC latency so low in Bangladesh (BDIX)?",
-      answer:
-        "BrutalMC is directly peered through major Bangladesh Internet Exchanges (BDIX). Whether you are connected via Amber IT, Dot Internet, Link3, Carnival, Carnival Point, or Grameenphone/Banglalink fiber, your packets route domestically with sub-15ms latency, virtually eliminating the lag and knockback delay common on foreign European or US servers.",
-      icon: <Wifi className="w-4 h-4 text-emerald-400" />,
-    },
-    {
-      category: "PLATFORMS",
-      question: "Can I play on Mobile (Bedrock/PE) or Cracked / Offline Launchers?",
-      answer:
-        "Yes, 100%! BrutalMC supports both official Microsoft Minecraft accounts and offline launchers (such as PojavLauncher on Android, TLauncher, and Prism). Bedrock and mobile players can connect using play.brutalmc.xyz with port 19132, allowing seamless cross-play with PC Java players.",
-      icon: <Sparkles className="w-4 h-4 text-cyan-400" />,
-    },
-    {
-      category: "GAMEPLAY",
-      question: "What is Custom World Survival SMP and what are its features?",
-      answer:
-        "BrutalMC is exclusively a Custom World Survival SMP server. It features a completely custom-generated Minecraft world with breathtaking custom biomes, procedural dungeons, clan warfare & secret wilderness fortresses, a player-driven diamond/coin economy with /ah, and mythical world boss raids.",
-      icon: <Swords className="w-4 h-4 text-red-400" />,
-    },
-    {
-      category: "BOSS RAIDS",
-      question: "What makes the Custom Ender Dragon on BrutalMC unique?",
-      answer:
-        "Unlike vanilla Minecraft, BrutalMC features an empowered Custom Ender Dragon with multi-phase AI combat, crystal energy barrier shields, homing void breath attacks, and meteor rain. Slaying the dragon yields rare Dragon Scales to forge end-game armor, custom Elytras, and server-wide prestige.",
-      icon: <Flame className="w-4 h-4 text-purple-400" />,
-    },
-    {
-      category: "TOURNAMENTS",
-      question: "Are there real cash / BDT tournaments and how do I participate?",
-      answer:
-        "Yes! BrutalMC hosts bi-weekly competitive duels and seasonal clan wars with real Bangladeshi Taka (BDT) prize pools ranging from ৳5,000 to ৳50,000 BDT. Tournament registration opens on our Discord server 5 days prior to each event. Matches are live-streamed with caster commentary and brackets managed via Challonge.",
-      icon: <Shield className="w-4 h-4 text-amber-400" />,
-    },
-    {
-      category: "STORE & DONATIONS",
-      question: "How can I purchase Ranks, Keys, and Blood Shards with bKash / Nagad?",
-      answer:
-        "We offer full automated and instant manual payment gateways supporting bKash, Nagad, Rocket, and Cellfin. Select your desired rank in the Ranks section or type /buy in-game, select Mobile Banking (BD), and complete the payment using Merchant/Personal Send Money with your transaction ID for instant in-game rank activation.",
-      icon: <CreditCard className="w-4 h-4 text-rose-400" />,
-    },
-    {
-      category: "SECURITY",
-      question: "What anticheat does BrutalMC use, and how do I report rule breakers?",
-      answer:
-        "We deploy a proprietary server-side heuristic anticheat alongside GrimAC and custom packet validation. It detects Reach, AutoClicker, KillAura, Baritone, Velocity, and Flight within ticks. You can report suspicious activity in real-time with /report <player> or by opening a Discord ticket with video evidence.",
-      icon: <Shield className="w-4 h-4 text-indigo-400" />,
-    },
-  ];
+  const icons: Record<string, React.ReactNode> = {
+  "CONNECTIVITY": <Wifi className="w-4 h-4 text-emerald-400" />,
+  "PLATFORMS": <Sparkles className="w-4 h-4 text-cyan-400" />,
+  "GAMEPLAY": <Swords className="w-4 h-4 text-red-400" />,
+  "BOSS RAIDS": <Flame className="w-4 h-4 text-purple-400" />,
+  "TOURNAMENTS": <Shield className="w-4 h-4 text-amber-400" />,
+  "STORE & DONATIONS": <CreditCard className="w-4 h-4 text-rose-400" />,
+  "SECURITY": <Shield className="w-4 h-4 text-indigo-400" />,
+  };
+  const faqs: FAQItem[] = FAQS.map((f) => ({ ...f, icon: icons[f.category] }));
 
   const toggleAccordion = (idx: number) => {
     sound.playClick();
@@ -85,9 +45,9 @@ export default function FAQ() {
             FREQUENTLY ASKED QUESTIONS
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          <h1 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
             NEED <span className="text-red-500">ANSWERS?</span>
-          </h2>
+          </h1>
 
           <p className="text-sm sm:text-base text-zinc-400">
             Everything you need to know about joining BrutalMC, competitive rules, BDIX connectivity, and local payments.

@@ -1,3 +1,5 @@
+<p align="center"><img src="public/images/brutalmc-logo.webp" alt="BrutalMC logo" width="260"></p>
+
 # BrutalMC Website
 
 The official website for **BrutalMC**, a custom world survival SMP Minecraft server in Bangladesh.

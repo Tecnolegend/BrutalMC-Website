@@ -151,9 +151,9 @@ export default function Ranks() {
             SERVER STORE & RANKS
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-minecraft font-bold uppercase tracking-tight text-white mc-shadow">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-minecraft font-bold uppercase tracking-tight text-white mc-shadow">
             UNLEASH YOUR <span className="text-red-500">POWER.</span>
-          </h2>
+          </h1>
 
           <p className="text-zinc-400 text-base sm:text-lg">
             Support the server and unlock exclusive perks, custom kill effects,

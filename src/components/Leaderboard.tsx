@@ -174,9 +174,9 @@ export default function Leaderboard() {
             SEASON III RANKINGS
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-minecraft font-bold uppercase tracking-tight text-white mc-shadow">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-minecraft font-bold uppercase tracking-tight text-white mc-shadow">
             DOMINATE THE <span className="text-red-500">RANKS.</span>
-          </h2>
+          </h1>
 
           <p className="text-zinc-400 text-base sm:text-lg">
             Glory, shards, and seasonal rewards await the fiercest warriors on

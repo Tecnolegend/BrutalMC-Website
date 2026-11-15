@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Events",
+  title: "Events – Weekly Minecraft Tournaments in Bangladesh",
   description: "Weekly BrutalMC events: build contests, boss raids, dungeon runs and dragon hunts with prizes.",
   alternates: { canonical: "/events/" },
 };

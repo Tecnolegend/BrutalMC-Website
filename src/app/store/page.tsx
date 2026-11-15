@@ -290,7 +290,7 @@ export default function StorePage() {
             <div className="flex items-center gap-2">
               <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-red-500/40 p-1 bg-gradient-to-br from-red-950 to-black">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="BrutalMC"
                   width={32}
                   height={32}

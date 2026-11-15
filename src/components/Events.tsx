@@ -149,9 +149,9 @@ export default function Events() {
             COMPETITIVE CALENDAR
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans">
             BRUTALMC <span className="text-red-500">EVENTS.</span>
-          </h2>
+          </h1>
 
           <p className="text-zinc-400 text-base sm:text-lg">
             Compete in weekly scheduled server tournaments with live commentators,

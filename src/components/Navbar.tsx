@@ -105,8 +105,8 @@ export default function Navbar({ onPlayClick }: NavbarProps) {
           >
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-red-500/40 p-1 bg-gradient-to-br from-red-950/60 to-black group-hover:border-red-500 group-hover:shadow-[0_0_15px_rgba(255,0,51,0.5)] transition-all duration-300">
               <Image
-                src="/images/logo.png"
-                alt="BrutalMC Logo"
+                src="/images/logo.webp"
+                alt="BrutalMC dragon logo"
                 width={40}
                 height={40}
                 className="w-full h-full object-contain"

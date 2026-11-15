@@ -856,7 +856,7 @@ export default function StaffPage() {
                                 className="w-full h-full object-cover rounded-xl"
                                 onError={(e) => {
                                   // Fallback to local default logo if third-party image fails
-                                  (e.target as HTMLImageElement).src = "/images/logo.png";
+                                  (e.target as HTMLImageElement).src = "/images/logo.webp";
                                 }}
                               />
                             ) : (

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Leaderboards",
-  description: "Top BrutalMC players by kills, balance, shards and level.",
+  title: "Leaderboards – Top Players",
+  description: "See the top BrutalMC players by kills, balance, blood shards and level on Bangladesh's custom survival Minecraft server.",
   alternates: { canonical: "/leaderboards/" },
 };
 

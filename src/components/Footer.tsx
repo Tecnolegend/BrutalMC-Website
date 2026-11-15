@@ -23,30 +23,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-zinc-900">
           {/* Brand & Mission Statement (col-span-2) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-red-500/40 p-1 bg-gradient-to-br from-red-950/60 to-black">
-                <Image
-                  src="/images/logo.png"
-                  alt="BrutalMC Logo"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-minecraft text-xl tracking-wider text-white uppercase mc-shadow">
-                    Brutal<span className="text-red-500">MC</span>
-                  </span>
-                  <span className="px-1.5 py-0.5 text-[8px] font-minecraft font-bold bg-red-600/30 border border-red-500/40 text-red-400 rounded">
-                    BD
-                  </span>
-                </div>
-                <span className="text-[9px] font-minecraft text-zinc-400 tracking-wider">
-                  #1 BANGLADESH COMPETITIVE NETWORK
-                </span>
-              </div>
-            </div>
+            <Image
+              src="/images/brutalmc-logo.webp"
+              alt="BrutalMC logo"
+              width={176}
+              height={176}
+              className="w-44 h-44 object-contain -ml-2 drop-shadow-[0_0_25px_rgba(255,0,51,0.25)]"
+            />
 
             <p className="text-sm text-zinc-400 leading-relaxed max-w-sm">
               Engineered from the ground up for high-octane competitive Minecraft.

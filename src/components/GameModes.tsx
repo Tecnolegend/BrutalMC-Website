@@ -135,9 +135,9 @@ export default function GameModes({ onPlayClick }: GameModesProps) {
               <Globe2 className="w-3.5 h-3.5" />
               FLAGSHIP SURVIVAL REALM
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans">
               CUSTOM WORLD <span className="text-red-500">SURVIVAL.</span>
-            </h2>
+            </h1>
             <p className="text-zinc-400 text-base sm:text-lg">
               BrutalMC is built exclusively as a premium Custom World Survival SMP.
               Featuring an empowered Custom Ender Dragon, handcrafted terrain,
