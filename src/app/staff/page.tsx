@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { sound } from "@/lib/sound";
 import confetti from "canvas-confetti";
@@ -14,9 +13,7 @@ import {
   Crown,
   Shield,
   ShieldCheck,
-  Code,
   Terminal,
-  Users,
   ChevronRight,
   Copy,
   Check,
@@ -32,243 +29,6 @@ import {
 } from "lucide-react";
 import { DISCORD_URL } from "@/lib/site";
 
-interface StaffMember {
-  id: string;
-  name: string;
-  role: string;
-  category: "OWNER" | "DEV" | "ADMIN" | "MOD" | "HELPER";
-  rankBadge: string;
-  rankColor: "red" | "amber" | "cyan" | "purple" | "emerald";
-  avatar: string;
-  discord: string;
-  timezone: string;
-  joinDate: string;
-  specialty: string;
-  bio: string;
-  status: "ONLINE" | "IN_GAME" | "AVAILABLE";
-  stats: {
-    label: string;
-    value: string;
-  }[];
-  namemc?: string;
-  isExecutive?: boolean;
-}
-
-const STAFF_MEMBERS: StaffMember[] = [
-  // 1. Executive Leadership
-  {
-    id: "tecnolegend",
-    name: "TecnoLegend",
-    role: "Founder & Lead Systems Architect",
-    category: "OWNER",
-    rankBadge: "FOUNDER & ARCHITECT",
-    rankColor: "red",
-    avatar: "/images/tecnolegend_skin.png",
-    discord: "tecnolegend#0001",
-    timezone: "BST (UTC+6) • Dhaka",
-    joinDate: "Est. 2023",
-    specialty: "Core Infrastructure & BDIX Fiber Routing",
-    bio: "Founder and visionary architect of BrutalMC Network. Engineers ultra-low latency BDIX domestic fiber routing, custom world terrain generation, proprietary anti-cheat defenses, and high-performance server core optimizations.",
-    status: "ONLINE",
-    isExecutive: true,
-    namemc: "https://namemc.com/profile/TecnoLegend",
-    stats: [
-      { label: "EXPERIENCE", value: "3+ YEARS" },
-      { label: "SERVER ELO", value: "#1 GLADIATOR" },
-      { label: "FOCUS", value: "INFRASTRUCTURE" },
-    ],
-  },
-  {
-    id: "not_strategy",
-    name: "Not_Strategy",
-    role: "Server Owner & Operations Director",
-    category: "OWNER",
-    rankBadge: "SERVER OWNER",
-    rankColor: "amber",
-    avatar: "/images/not_strategy_skin.png",
-    discord: "not_strategy#0001",
-    timezone: "BST (UTC+6) • Dhaka",
-    joinDate: "Est. 2023",
-    specialty: "Game Economy & Tournament Meta",
-    bio: "Co-Owner and executive director of BrutalMC. Oversees overall survival gameplay balance, Blood Shard progression meta, community tournament prize pools, bKash/Nagad billing operations, and partnership expansions.",
-    status: "IN_GAME",
-    isExecutive: true,
-    namemc: "https://namemc.com/profile/Not_Strategy",
-    stats: [
-      { label: "EXPERIENCE", value: "3+ YEARS" },
-      { label: "DIRECTOR", value: "OPERATIONS" },
-      { label: "FOCUS", value: "ECONOMY META" },
-    ],
-  },
-
-  // 2. Development Team
-  {
-    id: "vortex_dev",
-    name: "VortexByte",
-    role: "Senior Systems Developer",
-    category: "DEV",
-    rankBadge: "LEAD DEVELOPER",
-    rankColor: "cyan",
-    avatar: "https://mc-heads.net/avatar/VortexByte/128",
-    discord: "vortexbyte#4040",
-    timezone: "BST (UTC+6) • Chittagong",
-    joinDate: "Jan 2024",
-    specialty: "Dragon Boss AI & Custom Spells",
-    bio: "Lead developer responsible for custom Shenron dragon abilities, procedural dungeon algorithms, and Paper/Purpur JVM bytecode optimization for seamless 20.0 TPS gameplay.",
-    status: "ONLINE",
-    stats: [
-      { label: "COMMITS", value: "1,200+" },
-      { label: "FOCUS", value: "DRAGON AI" },
-      { label: "TPS TARGET", value: "20.0 SOLID" },
-    ],
-  },
-  {
-    id: "pixel_dev",
-    name: "PixelCraftBD",
-    role: "Backend & Web Engineer",
-    category: "DEV",
-    rankBadge: "WEB & API DEV",
-    rankColor: "cyan",
-    avatar: "https://mc-heads.net/avatar/PixelCraftBD/128",
-    discord: "pixelcraft#8821",
-    timezone: "BST (UTC+6) • Sylhet",
-    joinDate: "Mar 2024",
-    specialty: "Live Leaderboards & Webhook Sync",
-    bio: "Maintains real-time database synchronizations between the Minecraft survival server and the official website, powering live player stats, instant store deliveries, and Discord notifications.",
-    status: "AVAILABLE",
-    stats: [
-      { label: "DELIVERY", value: "<60 SEC" },
-      { label: "FOCUS", value: "STORE API" },
-      { label: "UPTIME", value: "99.9%" },
-    ],
-  },
-
-  // 3. Administration Team
-  {
-    id: "shadow_admin",
-    name: "ShadowStrike_BD",
-    role: "Head Administrator",
-    category: "ADMIN",
-    rankBadge: "HEAD ADMIN",
-    rankColor: "red",
-    avatar: "https://mc-heads.net/avatar/ShadowStrike_BD/128",
-    discord: "shadowstrike#1337",
-    timezone: "BST (UTC+6) • Dhaka",
-    joinDate: "Nov 2023",
-    specialty: "Staff Management & Ban Appeals",
-    bio: "Supervises server moderation workflows, reviews high-tier player ban appeals, analyzes anti-cheat telemetry data, and ensures fair treatment across all clans and player factions.",
-    status: "ONLINE",
-    stats: [
-      { label: "APPEALS", value: "24H REVIEW" },
-      { label: "INTEGRITY", value: "STRICT" },
-      { label: "PATROLS", value: "DAILY" },
-    ],
-  },
-  {
-    id: "aura_admin",
-    name: "AuraKnight",
-    role: "Community & Events Admin",
-    category: "ADMIN",
-    rankBadge: "EVENT MANAGER",
-    rankColor: "amber",
-    avatar: "https://mc-heads.net/avatar/AuraKnight/128",
-    discord: "auraknight#9920",
-    timezone: "BST (UTC+6) • Rajshahi",
-    joinDate: "Feb 2024",
-    specialty: "BDT Cash Tournaments & Discord Guild",
-    bio: "Coordinates weekend cash-prize tournaments, clan wars, build battle judging, and Discord community activities. The voice of community feedback to executive leadership.",
-    status: "IN_GAME",
-    stats: [
-      { label: "EVENTS", value: "50+ HOSTED" },
-      { label: "PRIZES", value: "৳100K+ BDT" },
-      { label: "DISCORD", value: "SQUAD LEAD" },
-    ],
-  },
-
-  // 4. Moderation Team
-  {
-    id: "blaze_mod",
-    name: "BlazeRider_07",
-    role: "Senior In-Game Moderator",
-    category: "MOD",
-    rankBadge: "SR. MODERATOR",
-    rankColor: "emerald",
-    avatar: "https://mc-heads.net/avatar/BlazeRider_07/128",
-    discord: "blazerider#5544",
-    timezone: "BST (UTC+6) • Khulna",
-    joinDate: "Apr 2024",
-    specialty: "Grief Rollbacks & Anti-Xray Patrols",
-    bio: "Expert in CoreProtect forensics and packet inspection. Rapidly restores griefed player builds, investigates suspicious ore mining rates, and handles in-game chat disputes.",
-    status: "ONLINE",
-    stats: [
-      { label: "ROLLBACKS", value: "100% CLEAN" },
-      { label: "RESPONSE", value: "<3 MINS" },
-      { label: "PATROL", value: "SURVIVAL SMP" },
-    ],
-  },
-  {
-    id: "frost_mod",
-    name: "FrostBite_MC",
-    role: "Staff Moderator",
-    category: "MOD",
-    rankBadge: "MODERATOR",
-    rankColor: "emerald",
-    avatar: "https://mc-heads.net/avatar/FrostBite_MC/128",
-    discord: "frostbite#7123",
-    timezone: "BST (UTC+6) • Dhaka",
-    joinDate: "Jun 2024",
-    specialty: "PvP Fair Play & Clan Enforcement",
-    bio: "Patrols high-risk combat zones like Dragon Valley and the Blood Shard Arena. Enforces strict zero-tolerance combat logging rules and anticheat verification.",
-    status: "IN_GAME",
-    stats: [
-      { label: "PVP AUDIT", value: "ACTIVE" },
-      { label: "MOD SHIFT", value: "EVENING" },
-      { label: "TICKETS", value: "450+ CLOSED" },
-    ],
-  },
-  {
-    id: "mystic_mod",
-    name: "MysticFalcon",
-    role: "Staff Moderator",
-    category: "MOD",
-    rankBadge: "MODERATOR",
-    rankColor: "emerald",
-    avatar: "https://mc-heads.net/avatar/MysticFalcon/128",
-    discord: "mysticfalcon#3391",
-    timezone: "BST (UTC+6) • Barisal",
-    joinDate: "Jul 2024",
-    specialty: "Player Onboarding & Chat Quality",
-    bio: "Maintains a respectful, friendly environment in chat across Bengali and English discussions. Assists new players with land claims, warps, and progression guides.",
-    status: "AVAILABLE",
-    stats: [
-      { label: "ORIENTATION", value: "DAILY" },
-      { label: "COMMUNITY", value: "FRIENDLY" },
-      { label: "TICKETS", value: "300+ CLOSED" },
-    ],
-  },
-
-  // 5. Helper & Trial Staff
-  {
-    id: "nova_helper",
-    name: "NovaSpark_BD",
-    role: "Community Support Helper",
-    category: "HELPER",
-    rankBadge: "TRIAL HELPER",
-    rankColor: "purple",
-    avatar: "https://mc-heads.net/avatar/NovaSpark_BD/128",
-    discord: "novaspark#1102",
-    timezone: "BST (UTC+6) • Rangpur",
-    joinDate: "Aug 2024",
-    specialty: "Discord Tickets & Basic /help Queries",
-    bio: "Fresh talent dedicated to fast-response player tickets, answering Bedrock and PojavLauncher connection questions, and guiding first-time adventurers around the spawn cathedral.",
-    status: "ONLINE",
-    stats: [
-      { label: "TRAINING", value: "ACTIVE" },
-      { label: "SPEED", value: "INSTANT" },
-      { label: "HELP DESK", value: "24/7 COVERAGE" },
-    ],
-  },
-];
 
 const ROLE_PERMISSIONS = [
   {
@@ -392,23 +152,8 @@ const APPLICATION_TEMPLATE = `[BRUTALMC STAFF APPLICATION]
 
 export default function StaffPage() {
   const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState<string>("ALL");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [templateCopied, setTemplateCopied] = useState(false);
-
-  const filterTabs = [
-    { key: "ALL", label: "All Staff", count: STAFF_MEMBERS.length },
-    { key: "OWNER", label: "Executive Owners", count: STAFF_MEMBERS.filter((m) => m.category === "OWNER").length },
-    { key: "DEV", label: "Developers", count: STAFF_MEMBERS.filter((m) => m.category === "DEV").length },
-    { key: "ADMIN", label: "Admins", count: STAFF_MEMBERS.filter((m) => m.category === "ADMIN").length },
-    { key: "MOD", label: "Moderators", count: STAFF_MEMBERS.filter((m) => m.category === "MOD").length },
-    { key: "HELPER", label: "Helpers", count: STAFF_MEMBERS.filter((m) => m.category === "HELPER").length },
-  ];
-
-  const filteredStaff =
-    selectedFilter === "ALL"
-      ? STAFF_MEMBERS
-      : STAFF_MEMBERS.filter((s) => s.category === selectedFilter);
 
   const handleCopyDiscord = (discordTag: string, id: string) => {
     sound.playSuccess();
@@ -494,7 +239,7 @@ export default function StaffPage() {
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-xs font-minecraft tracking-widest uppercase">
             <MinecraftEmoji name="totem_of_undying" size={16} glow="gold" />
-            <span>OFFICIAL BRUTALMC STAFF ROSTER</span>
+            <span>OFFICIAL BRUTALMC TEAM</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-minecraft font-bold uppercase tracking-tight text-white mc-shadow">
@@ -502,7 +247,7 @@ export default function StaffPage() {
           </h1>
 
           <p className="text-zinc-300 text-sm sm:text-base lg:text-lg leading-relaxed">
-            Meet the executive founders, systems developers, senior administrators, and dedicated community moderators keeping BrutalMC fair, competitive, and lag-free 24/7 across Bangladesh.
+            Meet TecnoLegend, the founder of BrutalMC. The staff team is growing: if you want to help keep the server fair and fun, apply below.
           </p>
 
           {/* Quick Metrics Bar */}
@@ -526,7 +271,7 @@ export default function StaffPage() {
           </div>
         </div>
 
-        {/* 1. EXECUTIVE LEADERSHIP (3D DUAL-SPOTLIGHT) */}
+        {/* 1. FOUNDER SPOTLIGHT */}
         <section className="mb-24">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-600 to-rose-700 flex items-center justify-center shadow-[0_0_15px_rgba(255,0,51,0.5)]">
@@ -534,16 +279,16 @@ export default function StaffPage() {
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-minecraft font-bold uppercase text-white mc-shadow">
-                EXECUTIVE <span className="text-red-500">LEADERSHIP & FOUNDERS</span>
+                THE <span className="text-red-500">FOUNDER</span>
               </h2>
               <p className="text-xs text-zinc-400">
-                Founding architects and directors holding overall network governance and technical authority.
+                BrutalMC was built and is run by TecnoLegend.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* 1. FOUNDER: TecnoLegend */}
+          <div className="max-w-3xl mx-auto">
+            {/* FOUNDER: TecnoLegend */}
             <div className="relative rounded-3xl p-[2px] bg-gradient-to-b from-red-600 via-rose-700 to-zinc-900 shadow-[0_0_50px_rgba(255,0,51,0.35)] flex flex-col justify-between overflow-hidden group">
               {/* Header Badge */}
               <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
@@ -599,10 +344,14 @@ export default function StaffPage() {
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-950/50 border border-red-500/30 text-[11px] font-mono text-emerald-400 self-start sm:self-center">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>ONLINE ON SERVER</span>
-                    </div>
+                    <a
+                      href="https://github.com/Tecnolegend"
+                      target="_blank"
+                      rel="noopener"
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-950/50 border border-red-500/30 text-[11px] font-mono text-red-300 hover:text-white self-start sm:self-center"
+                    >
+                      <span>GITHUB: TECNOLEGEND</span>
+                    </a>
                   </div>
 
                   <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
@@ -628,11 +377,11 @@ export default function StaffPage() {
                   {/* Discord Action */}
                   <div className="pt-2 flex items-center justify-between">
                     <button
-                      onClick={() => handleCopyDiscord("tecnolegend#0001", "tecnolegend")}
+                      onClick={() => handleCopyDiscord("tecnolegend103", "tecnolegend")}
                       className="inline-flex items-center gap-2 text-xs font-minecraft text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-colors"
                     >
                       <MessageSquare className="w-3.5 h-3.5 text-[#5865F2]" />
-                      <span>{copiedId === "tecnolegend" ? "COPIED DISCORD!" : "Discord: tecnolegend#0001"}</span>
+                      <span>{copiedId === "tecnolegend" ? "COPIED DISCORD!" : "Discord: tecnolegend103"}</span>
                       {copiedId === "tecnolegend" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-zinc-500" />}
                     </button>
 
@@ -651,315 +400,6 @@ export default function StaffPage() {
               </div>
             </div>
 
-            {/* 2. OWNER: Not_Strategy */}
-            <div className="relative rounded-3xl p-[2px] bg-gradient-to-b from-amber-500 via-amber-700 to-zinc-900 shadow-[0_0_50px_rgba(245,158,11,0.3)] flex flex-col justify-between overflow-hidden group">
-              {/* Header Badge */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-600 to-yellow-600 text-white font-minecraft text-[10px] uppercase font-bold tracking-wider shadow-[0_0_15px_rgba(245,158,11,0.8)] flex items-center gap-1.5 mc-shadow">
-                  <Crown className="w-3.5 h-3.5 text-yellow-200" />
-                  SERVER OWNER
-                </span>
-              </div>
-
-              {/* NameMC Link Button */}
-              <div className="absolute top-4 right-4 z-20">
-                <a
-                  href="https://namemc.com/profile/Not_Strategy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => sound.playClick()}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/75 hover:bg-black border border-zinc-700 hover:border-amber-500 text-zinc-300 hover:text-white font-minecraft text-[10px] transition-all backdrop-blur-md group/btn"
-                  title="View Not_Strategy Skin on NameMC"
-                >
-                  <span>NameMC</span>
-                  <ExternalLink className="w-3 h-3 text-amber-400 group-hover/btn:translate-x-0.5 transition-transform" />
-                </a>
-              </div>
-
-              {/* Inner Card Container */}
-              <div className="relative h-full w-full rounded-3xl bg-[#090910] p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
-                <div className="absolute -top-10 -right-10 w-72 h-72 bg-amber-600/15 rounded-full blur-3xl pointer-events-none" />
-
-                {/* 3D Model Viewport */}
-                <div className="relative w-full flex items-center justify-center pt-8 pb-4">
-                  <MinecraftPlayer3D
-                    skinUrl="/images/not_strategy_skin.png"
-                    username="Not_Strategy"
-                    roleBadge="OWNER"
-                    badgeColor="amber"
-                    height={380}
-                    interactive={true}
-                  />
-                </div>
-
-                {/* Bio & Details */}
-                <div className="pt-4 border-t border-amber-500/20 space-y-4 relative z-10">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-2xl font-minecraft font-bold text-white uppercase mc-shadow">
-                          Not_Strategy
-                        </h3>
-                        <MinecraftEmoji name="nether_star" size={20} glow="gold" />
-                      </div>
-                      <span className="text-xs font-mono text-amber-400 font-semibold tracking-wider">
-                        Server Owner & Operations Executive
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-950/50 border border-amber-500/30 text-[11px] font-mono text-amber-300 self-start sm:self-center">
-                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                      <span>ACTIVE DIRECTING</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                    Co-Owner and executive director of BrutalMC. Leads overall gameplay balance, blood-shard progression meta, community tournament prize pools, bKash store integration, and financial operations.
-                  </p>
-
-                  {/* Specialties Pill Badges */}
-                  <div className="grid grid-cols-3 gap-2 pt-2">
-                    <div className="p-2 rounded-xl bg-zinc-900/80 border border-zinc-800 text-center">
-                      <div className="text-[10px] font-minecraft text-zinc-400 uppercase">DIRECTOR</div>
-                      <div className="text-xs font-minecraft font-bold text-white mt-0.5">OPERATIONS</div>
-                    </div>
-                    <div className="p-2 rounded-xl bg-zinc-900/80 border border-zinc-800 text-center">
-                      <div className="text-[10px] font-minecraft text-zinc-400 uppercase">COMMUNITY</div>
-                      <div className="text-xs font-minecraft font-bold text-amber-400 mt-0.5">TOURNAMENTS</div>
-                    </div>
-                    <div className="p-2 rounded-xl bg-zinc-900/80 border border-zinc-800 text-center">
-                      <div className="text-[10px] font-minecraft text-zinc-400 uppercase">BALANCE</div>
-                      <div className="text-xs font-minecraft font-bold text-yellow-400 mt-0.5">ECONOMY META</div>
-                    </div>
-                  </div>
-
-                  {/* Discord Action */}
-                  <div className="pt-2 flex items-center justify-between">
-                    <button
-                      onClick={() => handleCopyDiscord("not_strategy#0001", "not_strategy")}
-                      className="inline-flex items-center gap-2 text-xs font-minecraft text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-colors"
-                    >
-                      <MessageSquare className="w-3.5 h-3.5 text-[#5865F2]" />
-                      <span>{copiedId === "not_strategy" ? "COPIED DISCORD!" : "Discord: not_strategy#0001"}</span>
-                      {copiedId === "not_strategy" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-zinc-500" />}
-                    </button>
-
-                    <a
-                      href="https://namemc.com/profile/Not_Strategy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => sound.playClick()}
-                      className="inline-flex items-center gap-1.5 text-xs font-minecraft text-amber-400 hover:text-amber-300 font-bold transition-colors"
-                    >
-                      <span>VIEW NAMEMC</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 2. COMPLETE STAFF DIRECTORY WITH ROLE FILTERS */}
-        <section className="mb-24">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-950 border border-zinc-700 flex items-center justify-center">
-                <Users className="w-5 h-5 text-red-400" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl font-minecraft font-bold uppercase text-white mc-shadow">
-                  STAFF <span className="text-red-500">DIRECTORY</span>
-                </h2>
-                <p className="text-xs text-zinc-400">
-                  Filter by division to find contact information, specialties, and on-duty status.
-                </p>
-              </div>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-zinc-950/80 border border-zinc-800">
-              {filterTabs.map((tab) => {
-                const isActive = selectedFilter === tab.key;
-                return (
-                  <button
-                    key={tab.key}
-                    onClick={() => {
-                      sound.playClick();
-                      setSelectedFilter(tab.key);
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-minecraft transition-all flex items-center gap-1.5 ${
-                      isActive
-                        ? "bg-red-600 text-white shadow-[0_0_12px_rgba(255,0,51,0.5)] font-bold"
-                        : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
-                    }`}
-                  >
-                    <span>{tab.label}</span>
-                    <span
-                      className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${
-                        isActive ? "bg-black/30 text-white" : "bg-zinc-900 text-zinc-500"
-                      }`}
-                    >
-                      {tab.count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Grid of Staff Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredStaff.map((member) => {
-              const isOwner = member.category === "OWNER";
-              const isDev = member.category === "DEV";
-              const isAdmin = member.category === "ADMIN";
-              const isMod = member.category === "MOD";
-              const isHelper = member.category === "HELPER";
-
-              const badgeColorClasses = isOwner
-                ? "bg-red-500/15 border-red-500/40 text-red-400"
-                : isDev
-                ? "bg-cyan-500/15 border-cyan-500/40 text-cyan-400"
-                : isAdmin
-                ? "bg-amber-500/15 border-amber-500/40 text-amber-400"
-                : isMod
-                ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-400"
-                : "bg-purple-500/15 border-purple-500/40 text-purple-400";
-
-              const borderGlow = isOwner
-                ? "hover:border-red-500/50 hover:shadow-[0_0_30px_rgba(255,0,51,0.25)]"
-                : isDev
-                ? "hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]"
-                : isAdmin
-                ? "hover:border-amber-500/50 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"
-                : isMod
-                ? "hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]"
-                : "hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]";
-
-              return (
-                <div
-                  key={member.id}
-                  className={`group relative rounded-2xl p-[1px] bg-gradient-to-b from-zinc-800/80 via-zinc-900 to-black transition-all duration-300 flex flex-col justify-between overflow-hidden ${borderGlow}`}
-                >
-                  <div className="relative h-full w-full rounded-2xl bg-[#08080f]/95 p-6 flex flex-col justify-between border border-zinc-800/70">
-                    <div>
-                      {/* Top Header: Avatar & Badges */}
-                      <div className="flex items-start justify-between gap-3 mb-4">
-                        <div className="flex items-center gap-3">
-                          <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-zinc-700 p-0.5 bg-gradient-to-br from-zinc-800 to-black shrink-0 group-hover:scale-105 transition-transform duration-300">
-                            {member.avatar.startsWith("http") ? (
-                              <img
-                                src={member.avatar}
-                                alt={member.name}
-                                className="w-full h-full object-cover rounded-xl"
-                                onError={(e) => {
-                                  // Fallback to local default logo if third-party image fails
-                                  (e.target as HTMLImageElement).src = "/images/logo.webp";
-                                }}
-                              />
-                            ) : (
-                              <Image
-                                src={member.avatar}
-                                alt={member.name}
-                                width={56}
-                                height={56}
-                                className="w-full h-full object-contain rounded-xl"
-                              />
-                            )}
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-1.5">
-                              <h3 className="font-minecraft text-lg font-bold text-white group-hover:text-red-400 transition-colors">
-                                {member.name}
-                              </h3>
-                              {isOwner && <Crown className="w-4 h-4 text-amber-400" />}
-                              {isDev && <Code className="w-4 h-4 text-cyan-400" />}
-                              {isAdmin && <ShieldCheck className="w-4 h-4 text-amber-400" />}
-                              {isMod && <Shield className="w-4 h-4 text-emerald-400" />}
-                              {isHelper && <HeartHandshake className="w-4 h-4 text-purple-400" />}
-                            </div>
-                            <span className="text-[11px] font-mono text-zinc-400 block truncate max-w-[170px]">
-                              {member.role}
-                            </span>
-                          </div>
-                        </div>
-
-                        <span
-                          className={`text-[9px] font-minecraft font-bold uppercase tracking-wider px-2 py-0.5 rounded border shrink-0 ${badgeColorClasses}`}
-                        >
-                          {member.rankBadge}
-                        </span>
-                      </div>
-
-                      {/* Bio */}
-                      <p className="text-xs text-zinc-300 leading-relaxed line-clamp-3 mb-4">
-                        {member.bio}
-                      </p>
-
-                      {/* Meta Pills */}
-                      <div className="grid grid-cols-2 gap-2 mb-4 text-[11px] font-mono">
-                        <div className="p-2 rounded-lg bg-zinc-900/60 border border-zinc-800">
-                          <span className="text-zinc-500 block text-[10px] uppercase">TIMEZONE</span>
-                          <span className="text-zinc-300 font-semibold">{member.timezone}</span>
-                        </div>
-                        <div className="p-2 rounded-lg bg-zinc-900/60 border border-zinc-800">
-                          <span className="text-zinc-500 block text-[10px] uppercase">TENURE</span>
-                          <span className="text-zinc-300 font-semibold">{member.joinDate}</span>
-                        </div>
-                      </div>
-
-                      {/* Stats row */}
-                      <div className="grid grid-cols-3 gap-1.5 py-3 border-y border-zinc-900 text-center">
-                        {member.stats.map((stat) => (
-                          <div key={stat.label}>
-                            <div className="text-[9px] font-mono text-zinc-500 uppercase truncate">
-                              {stat.label}
-                            </div>
-                            <div className="text-[11px] font-minecraft font-bold text-zinc-200 mt-0.5">
-                              {stat.value}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Action: Copy Discord & Status */}
-                    <div className="pt-4 flex items-center justify-between gap-2 mt-2">
-                      <div className="flex items-center gap-1.5 text-[10px] font-mono">
-                        <span
-                          className={`w-2 h-2 rounded-full ${
-                            member.status === "ONLINE"
-                              ? "bg-emerald-500 animate-pulse"
-                              : member.status === "IN_GAME"
-                              ? "bg-amber-400"
-                              : "bg-sky-400"
-                          }`}
-                        />
-                        <span className="text-zinc-400">{member.status.replace("_", " ")}</span>
-                      </div>
-
-                      <button
-                        onClick={() => handleCopyDiscord(member.discord, member.id)}
-                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white text-xs font-mono transition-colors"
-                        title="Copy Discord handle"
-                      >
-                        <MessageSquare className="w-3.5 h-3.5 text-[#5865F2]" />
-                        <span className="text-[11px]">
-                          {copiedId === member.id ? "COPIED!" : member.discord}
-                        </span>
-                        {copiedId === member.id ? (
-                          <Check className="w-3 h-3 text-emerald-400" />
-                        ) : (
-                          <Copy className="w-3 h-3 text-zinc-500" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </section>
 

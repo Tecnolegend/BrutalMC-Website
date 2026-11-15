@@ -299,6 +299,17 @@ export default function Footer() {
             <p className="text-zinc-400">
               © {new Date().getFullYear()} BrutalMC Network. All rights reserved. Crafted for Bangladeshi Gamers.
             </p>
+            <p className="text-zinc-400">
+              Founded &amp; built by{" "}
+              <a
+                href="https://github.com/Tecnolegend"
+                target="_blank"
+                rel="noopener"
+                className="text-red-400 hover:text-red-300 font-semibold"
+              >
+                Tecnolegend
+              </a>
+            </p>
             <p className="text-[11px] text-zinc-400 flex items-center justify-center md:justify-start gap-1.5">
               <ShieldAlert className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
               <span>

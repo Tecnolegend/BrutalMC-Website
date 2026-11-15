@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Staff Team & Applications",
-  description: "Meet the BrutalMC staff team, see who runs the server, and learn how to apply to become a helper or moderator.",
+  title: "Founder & Staff Applications",
+  description: "BrutalMC was founded by TecnoLegend. Learn about the founder and how to apply to join the BrutalMC staff team.",
   alternates: { canonical: "/staff/" },
 };
 

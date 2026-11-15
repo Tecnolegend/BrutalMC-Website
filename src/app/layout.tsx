@@ -106,6 +106,16 @@ const siteJsonLd = {
       description:
         "BrutalMC is a custom world survival SMP Minecraft server in Bangladesh for Java and Bedrock players.",
       sameAs: [DISCORD_URL, YOUTUBE_URL, INSTAGRAM_URL, "https://github.com/Tecnolegend/BrutalMC-Website"],
+      founder: { "@id": `${SITE_URL}/#founder` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#founder`,
+      name: "Tecnolegend",
+      alternateName: "TecnoLegend",
+      jobTitle: "Founder of BrutalMC",
+      url: "https://github.com/Tecnolegend",
+      sameAs: ["https://github.com/Tecnolegend", YOUTUBE_URL, INSTAGRAM_URL],
     },
     {
       "@type": "WebSite",
