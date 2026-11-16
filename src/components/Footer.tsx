@@ -199,6 +199,16 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/best-minecraft-server-bangladesh/"
+                  onMouseEnter={() => sound.playHover()}
+                  onClick={() => sound.playClick()}
+                  className="hover:text-red-400 transition-colors"
+                >
+                  Best Minecraft Server in Bangladesh
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/staff#apply"
                   onMouseEnter={() => sound.playHover()}
                   onClick={() => sound.playClick()}

@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 
 const PAGES: { path: string; priority: number; changeFrequency: "daily" | "weekly" | "monthly" }[] = [
   { path: "/", priority: 1, changeFrequency: "daily" },
+  { path: "/best-minecraft-server-bangladesh/", priority: 0.95, changeFrequency: "weekly" },
   { path: "/store/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/ranks/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/survival/", priority: 0.8, changeFrequency: "weekly" },

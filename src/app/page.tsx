@@ -324,6 +324,28 @@ export default function Home() {
           </div>
         </section>
 
+        {/* About BrutalMC: plain text for search engines and new players */}
+        <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+          <h2 className="text-2xl sm:text-3xl font-minecraft font-bold uppercase tracking-tight mc-shadow">
+            The Best Minecraft Server in Bangladesh
+          </h2>
+          <p className="mt-4 text-zinc-400 leading-relaxed">
+            BrutalMC is a free Bangladeshi Minecraft server for Java and Bedrock players. It runs on low-ping BDIX
+            routes, welcomes TLauncher, PojavLauncher and Minecraft PE players, and offers a custom world survival
+            SMP with clans, dungeons, an auction-house economy, dragon boss raids and weekly events with BDT prizes.
+            Join at <span className="font-mono text-white">{serverIP}</span> (Bedrock port 19132).
+          </p>
+          <p className="mt-3 text-zinc-400 leading-relaxed" lang="bn">
+            বাংলাদেশের সেরা মাইনক্রাফট সার্ভার — ফ্রি, Java ও Bedrock, কম পিং (BDIX)। আইপি: <span className="font-mono text-white">{serverIP}</span>
+          </p>
+          <Link
+            href="/best-minecraft-server-bangladesh/"
+            className="inline-block mt-5 text-sm font-mono text-red-400 hover:text-red-300 underline"
+          >
+            Why BrutalMC is the #1 Minecraft server in Bangladesh →
+          </Link>
+        </section>
+
         {/* Global Footer */}
         <Footer />
       </div>
